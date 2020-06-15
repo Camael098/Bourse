@@ -1,0 +1,13 @@
+name: BourseShop
+version: 1.0
+author: grandoz
+main: fr.grandoz.bourse.Main
+softdepend: [Vault]
+commands:
+  shop:
+    description: Ouvrir le menu 
+  bourseshop:
+    reload:
+      description: reload le shop
+    reset:
+      description: reset les prix	

@@ -1,0 +1,85 @@
+#Bourse shop plugin V1.0
+#Dev discord: grandoz#1157
+
+#<Fonctionnement du shop>  Shop à prix variables que vous pouvez configurer ,  chaque item a un "stage"
+#Le stage est le nombre de vente de l'item pour que son prix change Exemple: Le stage des patates est 
+#De 4000 donc s'il y'a 4000 patates vendues le prix des patates va diminuer de 2% (dans ce cas le multiply-factor est à 0.02 )
+#Cette valeur sera alors redistribuée équitablement à tous les items du shop de la meme catégorie 
+
+#Valeurs mathématiques :- (quand le stage est atteint) NewPrice = oldprice - oldprice * multiply-factor  
+#                       - Valeur ajoutée aux autres items : NewOtherPrices = OldOtherPrices + (oldprice * multiply-factor )/(number of other items)
+
+#<!> Important <!> La valeur row-inv correspond aux lignes de votre inventaire -->    1<= row <=6
+#<!> Important <!> La valeur du multiply-factor ne doit surtout pas dépasser 1 cela causerait plusieurs
+#problèmes (prix négatif) -->      multily-factor < 1
+#<!> Important <!> La valeur de BackGround color correspond à la couleur des glass pane des menu 
+#0 White                   #1 Orange                            #2 Magenta                      #3 Light Blue
+#4 Yellow                  #5 Lime                              #6 Pink                         #7 Gray 
+#8 Light Gray              #9 Cyan                              #10 Purple                      #11 Blue                 
+#12 Brown                  #13 Green                            #14 Red                         #15 Black 
+
+
+menu-row: 1
+menu-color: 7
+prefix: '&7[&eSHOP&7] '
+
+categories:
+  agriculture:
+    name: '&aAgriculture'
+    inv-row: 3
+    pos: 4
+    icon-id: 391
+    background-color: 7                
+    items:
+      'patate':
+        name: '&ePatate' 
+        material-id: 392
+        pos: 10                
+        quantite: 64
+        initialprice: 50.00     
+        stage: 500
+        multiply-factor: 0.02             
+        lore:
+        - '&c&m--------------------------'
+        - '&aClic droit pour vendre &f%sell%&a'
+        - '&aClic molette pour tout vendre'
+        - '&c&m--------------------------'
+      'pumpkin':
+        name: '&eCitrouille' 
+        material-id: 86
+        pos: 12                
+        quantite: 64
+        initialprice: 50.00     
+        stage: 500
+        multiply-factor: 0.02             
+        lore:
+        - '&c&m--------------------------'
+        - '&aClic droit pour vendre &f%sell%&a'
+        - '&aClic molette pour tout vendre'
+        - '&c&m--------------------------'
+      'cactus':
+        name: '&eCactus'
+        material-id: 81
+        pos: 14                
+        quantite: 64
+        initialprice: 50.00     
+        stage: 500
+        multiply-factor: 0.02             
+        lore:
+        - '&c&m--------------------------'
+        - '&aClic droit pour vendre &f%sell%&a'
+        - '&aClic molette pour tout vendre'
+        - '&c&m--------------------------'    
+      'carotte':
+        name: '&eCarotte'
+        material-id: 391
+        pos: 16                
+        quantite: 64
+        initialprice: 50.00     
+        stage: 500
+        multiply-factor: 0.02             
+        lore:
+        - '&c&m--------------------------'
+        - '&aClic droit pour vendre &f%sell%&a'
+        - '&aClic molette pour tout vendre'
+        - '&c&m--------------------------' 
