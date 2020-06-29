@@ -7,11 +7,11 @@ import fr.grandoz.bourse.Main;
 import fr.grandoz.bourse.Menu;
 import fr.grandoz.bourse.ShopManager;
 import fr.grandoz.bourse.Variables;
-import fr.grandoz.inventories.ClickableItem;
-import fr.grandoz.inventories.Inventory;
-import fr.grandoz.inventories.InventoryProvider;
-import fr.grandoz.inventories.ItemBuilder;
-import fr.grandoz.inventories.ItemStackBuilder;
+import fr.grandoz.bourse.inventories.ClickableItem;
+import fr.grandoz.bourse.inventories.Inventory;
+import fr.grandoz.bourse.inventories.InventoryProvider;
+import fr.grandoz.bourse.inventories.ItemBuilder;
+import fr.grandoz.bourse.inventories.ItemStackBuilder;
 
 public class MainMenu implements InventoryProvider {
 

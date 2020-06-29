@@ -83,3 +83,20 @@ categories:
         - '&aClic droit pour vendre &f%sell%&a'
         - '&aClic molette pour tout vendre'
         - '&c&m--------------------------' 
+
+
+
+
+#Mobs money drop config 
+#chance --> X%
+#enable: --> true = activé   // false = désactivé
+#Pour désactiver le message , mettez le message sur 'none'
+#Des difficultés pour trouver les ID's des mobs ? Consultez https://minecraft-ids.grahamedgecombe.com/entities
+enable: true 
+gain-message: '&aVous venez de recevoir &a%gain%&a$'
+
+bonus:
+  'zombie':
+    chance: 10
+    gain: 10.00
+    id: 54  

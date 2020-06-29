@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.grandoz.bourse.commands.BourseShopCommand;
 import fr.grandoz.bourse.commands.CommandShop;
-import fr.grandoz.inventories.InventoryManager;
+import fr.grandoz.bourse.inventories.InventoryManager;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin {
@@ -15,6 +15,7 @@ public class Main extends JavaPlugin {
 	private InventoryManager invmanager;
 	private Economy econ;
 	private Variables vars;
+	private MobManager mobmanager;
 
 
 
@@ -23,15 +24,20 @@ public class Main extends JavaPlugin {
 		main = this;
 		vars = new Variables();
 
-		invmanager = new InventoryManager();
+		invmanager = new InventoryManager();	
 		invmanager.init();
 
 		shopmanager= new ShopManager();
+		
+		this.mobmanager = new MobManager();
+		getServer().getPluginManager().registerEvents(mobmanager, 	this);
+		
 		configmanager= new ConfigManager();
-
 		setupEconomy();
 
-		getCommand("shop").setExecutor(new CommandShop());
+		
+		
+		getCommand("shop").setExecutor(new CommandShop());	
 		getCommand("bourseshop").setExecutor(new BourseShopCommand());
 	}	
 
@@ -77,6 +83,14 @@ public class Main extends JavaPlugin {
 
 	public void setVars(Variables vars) {
 		this.vars = vars;
+	}
+
+	public MobManager getMobmanager() {
+		return mobmanager;
+	}
+
+	public void setMobmanager(MobManager mobmanager) {
+		this.mobmanager = mobmanager;
 	}
 
 }

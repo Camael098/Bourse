@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.grandoz.inventories;
+package fr.grandoz.bourse.inventories;
 
 import java.util.HashMap;
 import java.util.List;

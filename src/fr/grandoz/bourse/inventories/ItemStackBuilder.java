@@ -1,21 +1,14 @@
-package fr.grandoz.inventories;
+package fr.grandoz.bourse.inventories;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 
-import java.lang.reflect.Field;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 
@@ -35,7 +28,6 @@ public class ItemStackBuilder {
 
     // Enchantments and flags
     private Map<Enchantment, Integer> enchantments = null;
-    private Set<ItemFlag> itemFlags = null;
 
     // Construction of a new builder
     public ItemStackBuilder() {}
@@ -122,16 +114,8 @@ public class ItemStackBuilder {
         return this;
     }
 
-    // Flags
-    public ItemStackBuilder withItemFlags(Set<ItemFlag> flags) {
-        this.itemFlags = flags;
-        return this;
-    }
 
-    // Can be used to add only 1 ItemFlag (#withItemFlags(ItemFlag.HIDE_ENCHANTMENTS))
-    public ItemStackBuilder withItemFlags(ItemFlag... flags) {
-        return withItemFlags(new HashSet<ItemFlag>(Arrays.asList(flags)));
-    }
+   
 
     public SkullBuilder toSkullBuilder() {
         return new SkullBuilder(this);
@@ -165,14 +149,10 @@ public class ItemStackBuilder {
             // Ignore all stupid enchantment restrictions ;)
             enchantments.forEach((ench, lvl) -> itemMeta.addEnchant(ench, lvl, true));
         }
-        // Add flags if any
-        if (itemFlags != null && !itemFlags.isEmpty()) {
-            itemMeta.addItemFlags(itemFlags.toArray(new ItemFlag[itemFlags.size()]));
-        }
+      
         // Deprecated in newer versions, but newer method does not exist in older
         // Only call when unbreakable is true, to refrain from calling as much as possible
         // You could of course always implement your own unbreakable method here
-        if (unbreakable) itemMeta.spigot().setUnbreakable(true);
 
         if(material == Material.LEATHER_BOOTS ||  material == Material.LEATHER_CHESTPLATE ||  material == Material.LEATHER_HELMET ||  material == Material.LEATHER_LEGGINGS ) {
         	 LeatherArmorMeta lch = (LeatherArmorMeta)itemMeta;
@@ -211,33 +191,7 @@ public class ItemStackBuilder {
             return this;
         }
 
-        /**
-         * Builds a skull from a owner
-         *
-         * @return ItemStack skull with owner
-         */
-        public ItemStack buildSkull() {
-            // Build the stack first, edit to make sure it's a skull
-            ItemStack skull = stackBuilder
-                    .asMaterial(Material.SKULL_ITEM)
-                    .withData(3)
-                    .buildStack();
-
-            // Edit skull meta
-            SkullMeta meta = (SkullMeta) skull.getItemMeta();
-            GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-			profile.getProperties().put("textures", new Property("textures", owner));
-
-			try {
-				Field profileField = meta.getClass().getDeclaredField("profile");
-				profileField.setAccessible(true);
-				profileField.set(meta, profile);
-			} catch (IllegalArgumentException | NoSuchFieldException | SecurityException
-					| IllegalAccessException ex) {
-				Bukkit.getLogger().log(Level.SEVERE, "Error while setting head texture", ex);
-			}
-        skull.setItemMeta(meta);
-            return skull;
-        }
+     
+      
     }
 }

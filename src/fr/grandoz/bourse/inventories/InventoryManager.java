@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.grandoz.inventories;
+package fr.grandoz.bourse.inventories;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -66,6 +66,8 @@ public class InventoryManager implements Listener {
 		p.closeInventory();
 	}
 
+
+
 	@EventHandler
 	public void onPlayerInventoryClick(InventoryClickEvent e) {
 		org.bukkit.inventory.Inventory clickedInventory = e.getClickedInventory();
@@ -75,6 +77,10 @@ public class InventoryManager implements Listener {
 			return;
 		Player p = (Player) e.getWhoClicked();
 		Inventory inv = getInventory(p);
+		if(inv.getExcludeCases()==null ||inv.getExcludeCases().size()==0) {
+			e.setCancelled(true);
+		}
+
 		if (inv == null || (e.getRawSlot() >= e.getInventory().getSize() && !e.isShiftClick()))
 			return;
 		if (inv.getExcludeCases() == null || !inv.getExcludeCases().contains(e.getSlot()))

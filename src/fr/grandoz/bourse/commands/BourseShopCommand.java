@@ -26,8 +26,10 @@ public class BourseShopCommand implements CommandExecutor {
 				Main.get().reloadConfig();
 				Main.get().getConfigmanager().save();
 				Main.get().getShopmanager().getMenus().clear();
+				Main.get().getMobmanager().getBonuses().clear();	
 				Main.get().getConfigmanager().loadShop();
 				Main.get().getConfigmanager().loadVariables();
+				Main.get().getConfigmanager().loadBonus();
 				sender.sendMessage(pr+"§cReload complete");
 				return false;
 			}

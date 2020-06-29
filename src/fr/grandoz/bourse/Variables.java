@@ -7,7 +7,8 @@ public class Variables {
 	public static String KEY_SHOP = "barakoabama";
 	private int menurow = 3;
 	private int menucolor = 7;
-
+	private boolean mobEnable = false;
+	private String gainmessage = "none";
 
 	public int getMenurow() {
 		return menurow;
@@ -26,6 +27,18 @@ public class Variables {
 	}
 	public void setPREFIX(String pREFIX) {
 		PREFIX = pREFIX;
+	}
+	public boolean isMobEnable() {
+		return mobEnable;
+	}
+	public void setMobEnable(boolean mobEnable) {
+		this.mobEnable = mobEnable;
+	}
+	public String getGainmessage() {
+		return gainmessage;
+	}
+	public void setGainmessage(String gainmessage) {
+		this.gainmessage = gainmessage;
 	}
 
 

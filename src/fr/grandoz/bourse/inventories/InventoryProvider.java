@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.grandoz.inventories;
+package fr.grandoz.bourse.inventories;
 
 import java.util.ArrayList;
 import java.util.List;

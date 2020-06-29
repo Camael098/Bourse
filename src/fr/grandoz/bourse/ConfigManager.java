@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
 
 
 public class ConfigManager {
@@ -29,18 +30,24 @@ public class ConfigManager {
 		config = YamlConfiguration.loadConfiguration(currents);
 
 		loadShop();
+		loadBonus();
 		loadVariables();
-
+		
 	}
 
 	public void loadVariables() {
 		int menurow = Main.get().getConfig().getInt("menu-row");
 		int menucolor = Main.get().getConfig().getInt("menu-color");
 		String pr = Main.get().getConfig().getString("prefix");
+		String gm = Main.get().getConfig().getString("gain-message");
+		boolean mobenable = Main.get().getConfig().getBoolean("enable");
 		pr= pr.replace("&", "§");
+		gm= gm.replace("&", "§");
 		Main.get().getVars().setPREFIX(pr);
 		Main.get().getVars().setMenucolor(menucolor);
 		Main.get().getVars().setMenurow(menurow);
+		Main.get().getVars().setMobEnable(mobenable);
+		Main.get().getVars().setGainmessage(gm);
 	}
 
 	public void loadShop(){
@@ -151,6 +158,19 @@ public class ConfigManager {
 
 	}
 
+	public void loadBonus() {
+		ConfigurationSection root = Main.get().getConfig().getConfigurationSection("bonus");
+		for(String key : root.getKeys(false)) {
+			ConfigurationSection section = Main.get().getConfig().getConfigurationSection("bonus."+key);
+			int chance = section.getInt("chance");
+			double gain = section.getDouble("gain");
+			int id = section.getInt("id");
+			EntityType type = EntityType.fromId(id);
+			Main.get().getMobmanager().getBonuses().put(type, new Bonus(chance, gain));
+		}
+
+
+	}
 
 	public String RemoveColorCodes(String str ) {
 
