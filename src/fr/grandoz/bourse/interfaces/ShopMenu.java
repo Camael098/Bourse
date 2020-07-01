@@ -1,4 +1,4 @@
-package fr.granoz.bourse.interfaces;
+package fr.grandoz.bourse.interfaces;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

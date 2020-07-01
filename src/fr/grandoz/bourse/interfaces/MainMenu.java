@@ -1,4 +1,4 @@
-package fr.granoz.bourse.interfaces;
+package fr.grandoz.bourse.interfaces;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

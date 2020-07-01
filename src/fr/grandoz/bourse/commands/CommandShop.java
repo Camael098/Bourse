@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.grandoz.bourse.Main;
-import fr.granoz.bourse.interfaces.MainMenu;
+import fr.grandoz.bourse.interfaces.MainMenu;
 
 public class CommandShop implements CommandExecutor {
 
