@@ -32,7 +32,7 @@ public class ConfigManager {
 		loadShop();
 		loadBonus();
 		loadVariables();
-		
+
 	}
 
 	public void loadVariables() {
@@ -139,18 +139,20 @@ public class ConfigManager {
 
 			ConfigurationSection root2 = config.getConfigurationSection("currents."+key1);
 			Menu menu = shopmanager.getByName().get(key1);
+			if(menu != null) {
 
-			for(String key2 : root2.getKeys(false)) {
 
-				ConfigurationSection section = config.getConfigurationSection("currents."+key1+"."+key2);
-				ShopItem item = menu.getByMat().get(key2);
-				if(item != null) {
+				for(String key2 : root2.getKeys(false)) {
 
-					double currentstage = section.getDouble("currentstage");
-					double currentprice = section.getDouble("currentprice");
-					item.setCurrentprice(currentprice);
-					item.setCurrentstage(currentstage);
+					ConfigurationSection section = config.getConfigurationSection("currents."+key1+"."+key2);
+					ShopItem item = menu.getByMat().get(key2);
+					if(item != null) {
 
+						double currentstage = section.getDouble("currentstage");
+						double currentprice = section.getDouble("currentprice");
+						item.setCurrentprice(currentprice);
+						item.setCurrentstage(currentstage);
+					}
 				}
 
 			}
